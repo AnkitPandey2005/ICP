@@ -24,3 +24,7 @@ public int[] maxSlidingWindow(int[] a, int k) {
     return r;
 }
 }
+/*
+TC = O(n)
+SC = O(k) (excluding output array, which is always required).
+*/
