@@ -27,3 +27,7 @@ class Solution {
         return ans;
     }
 }
+/*
+TC = O(log n)
+SC = O(1)
+*/
