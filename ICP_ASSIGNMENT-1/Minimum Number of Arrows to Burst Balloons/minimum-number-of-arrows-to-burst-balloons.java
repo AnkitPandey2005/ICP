@@ -15,3 +15,7 @@ class Solution {
         return (int)c;
     }
 }
+/*
+TC = O(n log n)
+SC = O(1) (or O(log n) due to sorting recursion stack)
+*/
