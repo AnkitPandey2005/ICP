@@ -1,16 +1,28 @@
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        int maxans = 0;
-        for (int i = 0; i < s.length(); i++) {
-            Set<Character> sc = new HashSet<>();
-            for (int j = i; j < s.length(); j++) {
-                if (sc.contains(s.charAt(j))) {
-                    break;
+    public int lengthOfLongestSubstring(String str) {
+         if(str.length()==0)
+             return 0;
+        int maxans = Integer.MIN_VALUE;
+        Set < Character > set = new HashSet < > ();
+        int l = 0;
+        for (int r = 0; r < str.length(); r++) 
+        {
+            if (set.contains(str.charAt(r))) //if duplicate element is found
+            {
+                while (l < r && set.contains(str.charAt(r))) {
+                    set.remove(str.charAt(l));
+                    l++;
                 }
-                sc.add(s.charAt(j));
             }
-            maxans = Math.max(maxans, sc.size());
+            set.add(str.charAt(r));
+            maxans = Math.max(maxans, r - l + 1);
         }
         return maxans;
     }
 }
+
+
+/*
+Time Complexity: O( 2*N ) 
+Space Complexity: O(N) 
+*/
