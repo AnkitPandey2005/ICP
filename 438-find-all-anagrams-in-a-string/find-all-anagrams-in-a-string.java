@@ -1,43 +1,23 @@
-import java.util.*;
-
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        if(p.length() > s.length()){
-            return new ArrayList<>();
+        int[] pCount=new int[26];
+        int[] sCount=new int[26];
+        List<Integer> result=new ArrayList<>();
+
+        for(char c:p.toCharArray()){
+            pCount[c-'a']++;
         }
-        int[] freq = new int[26];
-        for(int i = 0; i < p.length(); i++){
-            freq[p.charAt(i) - 'a']++;
-        }
-        
-        int[] comp = new int[26];
-        List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < p.length(); i++){
-            comp[s.charAt(i) - 'a']++;
-        }
-        
-        int left = 0;
-        if(Arrays.equals(freq, comp)){
-            list.add(left);
-        }
-        
-        int right = p.length();
-        while(right < s.length()){
-            comp[s.charAt(right) - 'a']++;  
-            comp[s.charAt(left) - 'a']--;  
-            left++;                         
-            right++;
-            
-            if(Arrays.equals(freq, comp)){
-                list.add(left);
+
+        for(int i=0;i<s.length();i++){
+            sCount[s.charAt(i)-'a']++;
+
+            if(i>=p.length()){
+            sCount[s.charAt(i-p.length())-'a']--;
             }
-        }
-        
-        return list;
+             if(Arrays.equals(pCount,sCount)){
+            result.add(i-p.length()+1);
+            }
+         }
+        return result;
     }
 }
-
-/*
-Time:	O(∣s∣)
-Space (auxiliary):	O(1)
-*/
